@@ -1,5 +1,7 @@
-// Routes for users
-// bringing Express router
+/**
+ * Routes for Posts
+ * Returns json
+ * */
 const express = require('express');
 const router = express.Router();
 

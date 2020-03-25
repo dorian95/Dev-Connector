@@ -1,3 +1,7 @@
+/**
+ * Routes for Posts
+ * Returns json
+ * */
 const express = require('express');
 const router = express.Router();
 
