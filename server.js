@@ -5,6 +5,11 @@ const app = express();
 
 //Connect DB
 connectDB();
+
+// No need to instal body parser, use Init Middleware
+app.use(express.json({ extended: false }));
+//app.use(express.json()); //Used to parse JSON bodies
+//app.use(express.urlencoded({ extended: true })); //Parse URL-encoded bodies
 //endpoint
 app.get('/', (req, res) => res.send('API Running'));
 
