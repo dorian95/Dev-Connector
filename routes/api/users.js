@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { check, validationResult } = require('express-validator');
-
+const gravatar = require('gravatar');
 const User = require('../../models/User');
 
 // @route    POST api/users
@@ -33,6 +33,11 @@ router.post(
       }
 
       // Get user's gravatar
+      const avatar = gravatar.url(email, {
+        s: '200',
+        r: 'pg',
+        d: 'mm',
+      });
 
       // Encrypt password
 
