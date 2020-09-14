@@ -48,7 +48,7 @@ router.post(
       });
 
       // Create a salt to do the hashing with
-      const salt = await bcrypt.getSalt(10);
+      const salt = await bcrypt.genSalt(10);
 
       // Encrypt password using bcrypt
       user.password = await bcrypt.hash(password, salt);
@@ -58,7 +58,7 @@ router.post(
 
       // Return jsonwebtoken
 
-      res.send('User route');
+      res.send('User registered');
     } catch (err) {
       console.error(err.message);
       res.status(500).send('Server error');
