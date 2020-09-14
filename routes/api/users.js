@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { check, validationResult } = require('express-validator');
 const gravatar = require('gravatar');
+const bcrypt = require('bcryptjs');
 const User = require('../../models/User');
 
 // @route    POST api/users
@@ -39,7 +40,21 @@ router.post(
         d: 'mm',
       });
 
-      // Encrypt password
+      user = new User({
+        name,
+        email,
+        avatar,
+        password,
+      });
+
+      // Create a salt to do the hashing with
+      const salt = await bcrypt.getSalt(10);
+
+      // Encrypt password using bcrypt
+      user.password = await bcrypt.hash(password, salt);
+
+      // save user to database, returns a promise
+      await user.save();
 
       // Return jsonwebtoken
 
